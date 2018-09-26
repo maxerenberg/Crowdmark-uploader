@@ -26,7 +26,7 @@ UIDs = client.search(['SUBJECT "' + dirname + '" FROM email@example.com'])
 assert len(UIDs) == 1, 'email with scanned pages not found'
 rawMessages = client.fetch(UIDs, ['BODY[]'])
 message = pyzmail.PyzMessage.factory(rawMessages[UIDs[0]][b'BODY[]'])
-file = message.mailparts[2]  # assuming the first file is some metadata text file
+file = message.mailparts[1]
 assert file.type.startswith('application/pdf'), 'attached PDF file not found'
 fi = open(dirname+'.pdf', 'wb+')
 print('Downloading PDF from email...')
